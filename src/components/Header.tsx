@@ -7,8 +7,7 @@ import {
   IconButton,
   Toolbar,
 } from '@mui/material'
-import '../css/particles.css'
-import '../css/TopBar.css'
+import '../css/header.css'
 import BadgeContribution from '../icons/BadgeContribution'
 import BadgeIndicator from '../icons/BadgeIndicator'
 import Bell from '../icons/Bell'
@@ -20,7 +19,7 @@ import Menu from '../icons/Menu'
 import Mood from '../icons/Mood'
 import Rail from '../icons/Rail'
 
-export default function TopBar() {
+export default function Header() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
