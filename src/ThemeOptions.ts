@@ -25,6 +25,20 @@ const theme = createTheme({
                 },
             }
         },
+        MuiListItemText:{
+            styleOverrides:{
+                primary:{
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: '#130B43',
+                },
+                secondary:{
+                    fontSize: '14px',
+                    fontWeight: 400,
+                    color: '#5C5589',
+                }
+            }
+        },
     }
 })
 
