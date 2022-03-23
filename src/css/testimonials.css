@@ -1,0 +1,57 @@
+.search-bar {
+    width: 416px;
+    background-color: #F0F3F9;
+    border-radius: 5px;
+    margin-left: 24.41px !important;
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+.search-bar:focus-within {
+    background-color: white !important;
+    outline: 1px solid #2E57E8 !important;
+    box-shadow: 0px 0px 2px 2px rgba(46, 87, 232, 0.25);
+}
+
+.testimonials-header {
+    border-bottom: 1px solid #D5D8E4;
+}
+
+.testimonials-pagination {
+    border-top: 1px solid #D5D8E4;
+    height: fit-content;
+}
+
+.pagination-button {
+    background: #FFFFFF !important;
+    border: 1px solid #D5D8E4 !important;
+    box-shadow: 0px 1px 0px 1px rgba(203, 201, 217, 0.6);
+    border-radius: 5px;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    color: #5C5589 !important;
+}
+
+.pagination-button:hover {
+    background: rgba(224, 224, 237, 0.4) !important;
+}
+
+.pagination-button:disabled {
+    color: #76709F !important;
+    background-color: #E0E0ED !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.language-selector {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.language-selector:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.custom-radio:hover {
+    background-color: transparent !important;
+}
