@@ -1,24 +1,11 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Chip,
-  Menu,
-  MenuItem,
-  MenuList,
-  Pagination,
-  PaginationItem,
-  Paper,
-  Radio,
-  Stack,
-  Typography,
-} from '@mui/material'
-import { useState } from 'react'
+import { Box, Button, Pagination, PaginationItem, Stack } from '@mui/material'
 import LeftArrow from '../icons/LeftArrow'
 import RightArrow from '../icons/RightArrow'
 
-export default function TestimonialsPagination() {
-  const [page, setPage] = useState(1)
+export default function TestimonialsPagination(props: any) {
+  const handleChange = (v: number) => {
+    props.setPage(v)
+  }
 
   return (
     <Box className="testimonials-pagination">
@@ -32,20 +19,20 @@ export default function TestimonialsPagination() {
         <Button
           className="pagination-button"
           startIcon={<LeftArrow />}
-          disabled={page === 1}
-          onClick={() => setPage((old) => old - 1)}
+          disabled={props.page === 1}
+          onClick={() => props.setPage((old: number) => old - 1)}
         >
           Previous
         </Button>
         <Pagination
           sx={{ my: '16px' }}
-          count={34}
+          count={props.maxPage}
           variant="outlined"
           shape="rounded"
-          onChange={(e, v) => setPage(v as number)}
+          onChange={(e, v) => handleChange(v)}
           hidePrevButton
           hideNextButton
-          page={page}
+          page={props.page}
           renderItem={(item) => (
             <PaginationItem
               sx={{
@@ -65,8 +52,8 @@ export default function TestimonialsPagination() {
           className="pagination-button"
           endIcon={<RightArrow />}
           disableRipple
-          disabled={page === 34}
-          onClick={() => setPage((old) => old + 1)}
+          disabled={props.page === props.maxPage}
+          onClick={() => props.setPage((old: number) => old + 1)}
         >
           Next
         </Button>

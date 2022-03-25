@@ -28,7 +28,7 @@ export default function Header() {
           <div style={{ flexGrow: 1 }}>
             <IconButton
               disableRipple
-              className="dashboard-icon"
+              className="dashboard-button"
               sx={{ mr: '16px' }}
             >
               <Dashboard />

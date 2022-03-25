@@ -8,16 +8,17 @@ import {
   ListItemText,
   Typography,
 } from '@mui/material'
+import { TestimonialEntry } from '../api/Interfaces'
 import Next from '../icons/Next'
 
-export default function TestimonialsList() {
+export default function TestimonialsList(props: any) {
   return (
     <List dense sx={{ maxWidth: '100%', bgcolor: 'background.paper' }}>
-      {[0, 1, 2, 3].map((value) => {
-        const labelId = `checkbox-list-secondary-label-${value}`
+      {props.testimonials.map((r: TestimonialEntry) => {
+        const labelId = `checkbox-list-secondary-label-${r.id}`
         return (
           <ListItem
-            key={value}
+            key={r.id}
             secondaryAction={
               <IconButton disableRipple>
                 <Next />
@@ -27,32 +28,32 @@ export default function TestimonialsList() {
           >
             <ListItemButton>
               <ListItemAvatar>
-                <Avatar
-                  alt={`Avatar n°${value + 1}`}
-                  src="https://dg8krxphbh767.cloudfront.net/tracks/kotlin.svg"
-                />
+                <Avatar alt={`Avatar n°${r.id + 1}`} src={r.track.icon_url} />
               </ListItemAvatar>
               <ListItemAvatar>
                 <Avatar
-                  alt={`Avatar n°${value + 1}`}
-                  src="https://avatars3.githubusercontent.com/u/135246"
+                  alt={`Avatar n°${r.id + 1}`}
+                  src={r.mentor.avatar_url}
                 />
               </ListItemAvatar>
               <ListItemText
                 id={labelId}
-                primary="Bobahop"
-                secondary="on High Scores in Bash"
+                primary={r.mentor.handle}
+                secondary={`on ${r.exercise.title}`}
+                sx={{ width: '300px', flexGrow: 0 }}
               />
-              <ListItemText>
+              <ListItemText sx={{ position: 'relative' }}>
                 <Typography
                   sx={{
                     fontSize: '15px',
                     fontWeight: '400',
                     color: '#3F3A5A',
-                    textAlign: 'left',
+                    textAlign: 'start',
                   }}
                 >
-                  Hello!
+                  {r.content.length > 64
+                    ? `${r.content.slice(0, 64).trim()}...`
+                    : r.content}
                 </Typography>
               </ListItemText>
               <ListItemText sx={{ mr: '56px' }}>
@@ -64,7 +65,7 @@ export default function TestimonialsList() {
                     textAlign: 'right',
                   }}
                 >
-                  an hour ago
+                  {CalculateDate(r.created_at)}
                 </Typography>
               </ListItemText>
             </ListItemButton>
@@ -73,4 +74,46 @@ export default function TestimonialsList() {
       })}
     </List>
   )
+}
+
+function CalculateDate(date: Date) {
+  let dy = new Date().getFullYear() - new Date(date).getFullYear()
+  let dm = new Date().getMonth() - new Date(date).getMonth()
+  let dd = new Date().getDate() - new Date(date).getDate()
+  let dh = new Date().getHours() - new Date(date).getHours()
+
+  if (dh < 0) {
+    dd -= 1
+    dh += 24
+  }
+  if (dd < 0) {
+    dm -= 1
+    dd += 30
+  }
+  if (dm < 0) {
+    dy -= 1
+    dm += 12
+  }
+
+  if (dy > 1) {
+    return `${dy} years ago`
+  } else if (dy === 1) {
+    return 'a year ago'
+  } else if (dy === 0 && dm > 1) {
+    return `${dm} months ago`
+  } else if (dy === 0 && dm === 1) {
+    return 'a month ago'
+  } else if (dy === 0 && dm === 0 && dd > 1 && dd <= 7) {
+    return 'a week ago'
+  } else if (dy === 0 && dm === 0 && dd > 7 && Math.floor(dd / 4) < 4) {
+    return `${Math.floor(dd / 4)} weeks ago`
+  } else if (dy === 0 && dm === 0 && dd === 1) {
+    return 'a day ago'
+  } else if (dy === 0 && dm === 0 && dd > 7 && Math.floor(dd / 4) >= 4) {
+    return `a month ago`
+  } else if (dy === 0 && dm === 0 && dd === 0 && dh === 1) {
+    return 'an hour ago'
+  } else {
+    return `${dh} hours ago`
+  }
 }
