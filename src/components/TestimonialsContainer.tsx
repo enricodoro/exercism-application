@@ -1,16 +1,16 @@
-import { Container } from '@mui/material'
-import { useEffect, useState } from 'react'
+import { Box, CircularProgress, Container, Stack } from '@mui/material'
+import { useEffect } from 'react'
 import '../css/testimonials.css'
 import TestimonialsHeader from './TestimonialsHeader'
 import TestimonialsList from './TestimonialsList'
 import TestimonialsPagination from './TestimonialsPagination'
 
 export default function TestimonialsContainer(props: any) {
-  const [wait, setWait] = useState(true)
-
   useEffect(() => {
-    props.testimonials?.results?.length > 0 ? setWait(false) : setWait(true)
-  }, [props.testimonials])
+    props.testimonials?.results?.length > 0
+      ? props.setWait(false)
+      : props.setWait(true)
+  }, [props, props.testimonials])
 
   return (
     <Container
@@ -30,8 +30,22 @@ export default function TestimonialsContainer(props: any) {
         setOrder={props.setOrder}
         counts={props.testimonials?.track_counts}
         total={props.total}
+        handleSearch={props.handleSearch}
       />
-      {!wait && <TestimonialsList testimonials={props.results} />}
+      {!props.wait ? (
+        <TestimonialsList testimonials={props.results} />
+      ) : (
+        <Box
+          sx={{
+            minHeight: '640px',
+            backgroundColor: 'rgba(251, 252, 254, 0.95)',
+          }}
+        >
+          <Stack alignItems="center" justifyContent="center" minHeight="640px">
+            <CircularProgress />
+          </Stack>
+        </Box>
+      )}
       <TestimonialsPagination
         page={props.page}
         setPage={props.setPage}

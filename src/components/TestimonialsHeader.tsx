@@ -21,13 +21,19 @@ import SearchIcon from '../icons/SearchIcon'
 
 export default function TestimonialsHeader(props: any) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [search, setSearch] = useState('')
   const open = Boolean(anchorEl)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
+
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleSearch = (v: string) => {
+    setSearch(v)
   }
 
   return (
@@ -72,6 +78,7 @@ export default function TestimonialsHeader(props: any) {
           placeholder="Filter by exercise title"
           variant="standard"
           type="text"
+          onChange={(e) => props.handleSearch(e.target.value)}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" sx={{ ml: '21px' }}>
@@ -166,6 +173,7 @@ function LanguageMenu(props: any) {
       {props.languages.map((l: Track) => {
         return (
           <MenuItem
+            key={l.slug}
             sx={{ px: '0px', mx: '8px', py: '8px' }}
             onClick={() => handleClick(l.slug)}
             selected={props.selected === l.slug}

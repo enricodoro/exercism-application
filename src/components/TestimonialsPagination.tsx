@@ -21,6 +21,7 @@ export default function TestimonialsPagination(props: any) {
           startIcon={<LeftArrow />}
           disabled={props.page === 1}
           onClick={() => props.setPage((old: number) => old - 1)}
+          sx={{ my: '16px' }}
         >
           Previous
         </Button>
@@ -54,6 +55,7 @@ export default function TestimonialsPagination(props: any) {
           disableRipple
           disabled={props.page === props.maxPage}
           onClick={() => props.setPage((old: number) => old + 1)}
+          sx={{ my: '16px' }}
         >
           Next
         </Button>

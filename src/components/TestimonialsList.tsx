@@ -13,7 +13,14 @@ import Next from '../icons/Next'
 
 export default function TestimonialsList(props: any) {
   return (
-    <List dense sx={{ maxWidth: '100%', bgcolor: 'background.paper' }}>
+    <List
+      dense
+      sx={{
+        maxWidth: '100%',
+        bgcolor: 'background.paper',
+        minHeight: '640px',
+      }}
+    >
       {props.testimonials.map((r: TestimonialEntry) => {
         const labelId = `checkbox-list-secondary-label-${r.id}`
         return (

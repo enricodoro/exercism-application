@@ -17,9 +17,16 @@ export default function MainContainer() {
   const [page, setPage] = useState(1)
   const [languages, setLanguages] = useState<Track[]>([])
   const [total, setTotal] = useState(0)
+  const [exercise, setExercise] = useState('')
+  const [wait, setWait] = useState(true)
+
+  const handleSearch = (ex: string) => {
+    setExercise(ex)
+  }
 
   useEffect(() => {
-    getTestimonials(page, selected, order)
+    setWait(true)
+    getTestimonials(page, selected, order, exercise)
       .then((t) => {
         setTestimonials(t)
         setResults(t.results)
@@ -27,7 +34,7 @@ export default function MainContainer() {
       .catch((e) => {
         // todo
       })
-  }, [order, page, selected])
+  }, [exercise, order, page, selected])
 
   useEffect(() => {
     setPage(1)
@@ -62,7 +69,7 @@ export default function MainContainer() {
   }, [testimonials, languages, total])
 
   return (
-    <Container sx={{ maxWidth: '100% !important' }}>
+    <Container sx={{ maxWidth: '1440px !important' }}>
       <Stack direction="column" alignItems="center" gap={2} marginTop={5}>
         <ChatBadge />
         <Stack direction="row" alignItems="center" gap={2}>
@@ -94,6 +101,9 @@ export default function MainContainer() {
           page={page}
           setPage={setPage}
           total={total}
+          handleSearch={handleSearch}
+          wait={wait}
+          setWait={setWait}
         />
       </Stack>
     </Container>

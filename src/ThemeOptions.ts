@@ -9,10 +9,10 @@ const theme = createTheme({
             styleOverrides:{
                 root:{
                     backgroundColor: 'white',
-                    minWidth: '1440px',
+                    maxWidth: '1440px',
+                    marginInline: 'auto',
                     height: '64px',
                     boxShadow: "none",
-                    borderBottom: '1px solid #C8D5EF',
                     color: 'black',
                 }
             }

@@ -21,7 +21,7 @@ import Rail from '../icons/Rail'
 
 export default function Header() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, borderBottom: '1px solid #C8D5EF' }}>
       <AppBar position="static">
         <Toolbar>
           <Logo />
